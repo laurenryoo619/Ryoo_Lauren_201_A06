@@ -1,7 +1,7 @@
 ---
 title: "Assignment 6"
 subtitle: "STAT 201"
-author: "YOUR NAME"
+author: "Lauren Ryoo"
 
 format:
   html:
@@ -48,7 +48,7 @@ To get full credit for this Question you must:
 
 ## Github Repo Link
 
-[https://your-github-repo-url](https://your-github-repo-url)
+[https://github.com/laurenryoo619/Ryoo_Lauren_201_A06](https://github.com/laurenryoo619/Ryoo_Lauren_201_A06)
 
 :::
 
@@ -56,7 +56,7 @@ To get full credit for this Question you must:
 
 ## Screenshot/image of RStudio
 
-![](filepath.png)
+![](github_setup.png)
 
 :::
 
@@ -102,7 +102,13 @@ Extract the value `8162` (LeBron James points) in 2 different ways:
 - using names
 
 ```{r}
+# using indexing
+indexing <- player_info[[2]][["points"]]
+print(indexing)
 
+# using names
+names <- player_info[["LJ"]][["points"]]
+print(names)
 ```
 
 
@@ -113,10 +119,15 @@ Add a new named element to the end of each player's list called `height`. The he
 Print the `player_info` list to prove you were successful.
 
 ```{r}
+# adding height to each player's list
+player_info$MJ$height <- 78
+player_info$LJ$height <- 81
+player_info$KB$height <- 78
+player_info$KA$height <- 86
+player_info$SO$height <- 85
 
+player_info
 ```
-
-
 ### Part c (3 points)
 
 Create a new list that contains elements corresponding to each player's `points_per_game`. 
@@ -132,9 +143,18 @@ Hint: initialize an empty list
 Note: this must still run correctly even if the values were to change or if another player were added to the list or if the player order changed.
 
 ```{r}
+# initializing an empty list 
+ppg_list <- list()
 
+# iterating through players in player_info
+for (player_initials in names(player_info)) {
+  player <- player_info[[player_initials]]
+  ppg <- player$points / player$games_played
+  ppg_list[[player_initials]] <- ppg
+}
+
+print(ppg_list)
 ```
-
 
 ### Part d (1 point)
 
@@ -143,7 +163,9 @@ Use the list created in Part c and an appropriate apply function to round each v
 Store the output as a vector and print the results.
 
 ```{r}
+ppg_vector <- sapply(ppg_list, round, 2)
 
+print(ppg_vector)
 ```
 
 
