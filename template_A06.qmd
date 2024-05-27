@@ -186,9 +186,23 @@ ie: 91 rounds to 90; 173 rounds to 200; 1450 rounds to 1000
 Hint: use `MARGIN = 1:2` to apply the function to each value instead of only a row/col.
 
 ```{r}
+# creating rounding function 
+round_values <- function(x) {
+  if (x < 100) {
+    return(round(x, -1)) # rounding to the nearest tens
+  } else if (x < 1000) { 
+    return(round(x, -2)) # rounding to the nearest hundreds
+  } else {
+    return(round(x, -3)) # rounding to the nearest thousands 
+  }
+}
 
+# applying the function to each element in the matrix
+mat_rand2 <- apply(mat_rand, MARGIN = 1:2, round_values)
+
+print(mat_rand)
+print(mat_rand2)
 ```
-
 
 ## Question 4 (9 points)
 
