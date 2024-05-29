@@ -119,14 +119,7 @@ Add a new named element to the end of each player's list called `height`. The he
 Print the `player_info` list to prove you were successful.
 
 ```{r}
-# adding height to each player's list
-player_info$MJ$height <- 78
-player_info$LJ$height <- 81
-player_info$KB$height <- 78
-player_info$KA$height <- 86
-player_info$SO$height <- 85
-
-player_info
+3
 ```
 ### Part c (3 points)
 
@@ -268,9 +261,22 @@ Example (this is NOT the answer just an example of what goes in the {}):
 Note: This code should still run successfully even if the numbers were to change.
 
 ```{r}
+# calculating the median annual temperature from the Colorado dataset
+colorado_median_annual <- apply(colorado_data[, 3:14], 1, median)
+
+# finding the years with the highest and lowest median temperatures
+max_median_temp <- max(colorado_median_annual)
+min_median_temp <- min(colorado_median_annual)
+max_median_index <- which.max(colorado_median_annual)
+min_median_index <- which.min(colorado_median_annual)
+
+# finding the corresponding years 
+max_median_year <- colorado_data$year[max_median_index]
+min_median_year <- colorado_data$year[min_median_index]
+
+paste0("The maximum median annual temperature of ", max_median_temp, " occurred in ", max_median_year, " and the minimum median annual temperature of ", min_median_temp, " occurred in ", min_median_year, ".")
 
 ```
-
 
 ## Question 5 (5 points)
 
